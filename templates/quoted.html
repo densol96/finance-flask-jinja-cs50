@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    {% if quote %}
+    Result: {{ quote.symbol }} is {{ quote.price | usd }}.
+    {% else %}
+    Wrong symbol. <a href="/quote">Try again!</a>.
+    {% endif %}
+{% endblock %}

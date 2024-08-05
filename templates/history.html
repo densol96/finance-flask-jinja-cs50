@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    {% if transaction.shares < 0 %}
+                        <td>SOLD</td>
+                    {% else %}
+                        <td>BOUGHT</td>
+                    {% endif %}
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares | abs }}</td>
+                    <td>{{ transaction.price | usd }}</td>
+                    <td>{{ transaction.total | usd }}</td>
+                    <td>{{ transaction.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
