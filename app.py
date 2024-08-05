@@ -217,6 +217,9 @@ def change_password():
         current_password = request.form.get("old")
         new_password = request.form.get("new")
         confirm_password = request.form.get("confirmation")
+        
+        if not current_password or not new_password or not confirm_password:
+            return apology("Invalid input", 400)
 
         if new_password != confirm_password:
             return apology("Passwords do not match", 400)
